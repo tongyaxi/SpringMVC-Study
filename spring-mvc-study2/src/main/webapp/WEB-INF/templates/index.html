@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>首页</h1>
+<a th:href="@{/hello/testRequestMapping}">测试RequestMapping注解的位置</a><br>
+<a th:href="@{/testRequestMapping}">测试RequestMapping注解的value属性-->/testRequestMapping</a><br>
+<a th:href="@{/test}">测试RequestMapping注解的value属性-->/test</a><br>
+
+<a th:href="@{/test}">测试RequestMapping注解的method属性-->GET</a><br>
+<form th:action="@{/test}" method="post">
+    <input type="submit" value="测试RequestMapping注解的method属性-->POST">
+</form>
+
+<a th:href="@{/testGetMapping}">测试GetMapping注解-->/testGetMapping</a><br>
+<form th:action="@{/testPut}" method="put">
+    <input type="submit" value="测试form表单是否能够发送put或delete请求方式">
+</form>
+
+<a th:href="@{/testParamsAndHeaders(username='admin',password=123)}">测试RequestMapping注解的params属性-->/testParamsAndHeaders</a><br>
+
+<a th:href="@{/a1a/testAnt}">测试@RequestMapping可以匹配ant风格的路径-->使用?</a><br>
+<a th:href="@{/a1a/testAnt}">测试@RequestMapping可以匹配ant风格的路径-->使用*</a><br>
+<a th:href="@{/a1a/testAnt}">测试@RequestMapping可以匹配ant风格的路径-->使用**</a><br>
+
+<a th:href="@{/testPath/1/admin}">测试@RequestMapping支持路径中的占位符-->/testPath</a>
+<br>
+<br>
+<br>
+<a th:href="@{/testRequestByServletAPI}">通过servletAPI向request域对象共享数据</a><br>
+<a th:href="@{/testModelAndView}">通过ModelAndView向request域对象共享数据</a><br>
+<a th:href="@{/testModel}">通过Model向request域对象共享数据</a><br>
+<a th:href="@{/testMap}">通过map向request域对象共享数据</a><br>
+<a th:href="@{/testModelMap}">通过ModelMap向request域对象共享数据</a><br>
+<a th:href="@{/testSession}">通过servletAPI向session域对象共享数据</a><br>
+<a th:href="@{/testApplication}">通过servletAPI向application域对象共享数据</a><br>
+<hr>
+<a th:href="@{/employee}">查看员工信息</a>
+<br><hr>
+<form th:action="@{/testRequestBody}" method="post">
+    <input type="text" name="username">
+    <input type="text" name="password">
+    <input type="submit" value="测试@RequestBody">
+</form>
+<br>
+<form th:action="@{/testRequestEntity}" method="post">
+    <input type="text" name="username">
+    <input type="text" name="password">
+    <input type="submit" value="测试RequestEntity">
+</form>
+<br>
+<a th:href="@{/testResponse}">通过servletAPI的response对象响应浏览器数据</a>
+<br>
+<a th:href="@{/testResponseBody}">通过@ResponseBody响应浏览器数据</a>
+<br>
+<a th:href="@{/testResponseUser}">通过@ResponseBody响应浏览器User对象</a>
+<br>
+<div id="app">
+    <a @click="testAxios" th:href="@{/testAxios}">SpringMVC处理ajax</a>
+</div>
+<br>
+<a th:href="@{/testInterceptor}">测试拦截器</a>
+<br>
+<a th:href="@{/testExceptionHandler}">测试异常处理</a>
+<br>
+
+<script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        methods:{
+            testAxios:function (event) {
+                axios({
+                    method:"post",
+                    url:event.target.href,
+                    params:{
+                        username:"admin",
+                        password:"123456"
+                    }
+                }).then(function (response) {
+                    alert(response.data);
+                });
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+</body>
+</html>

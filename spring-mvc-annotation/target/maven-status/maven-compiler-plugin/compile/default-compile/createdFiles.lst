@@ -1,0 +1,5 @@
+com\tongyaxi\mvc\config\WebConfig.class
+com\tongyaxi\mvc\controller\TestController.class
+com\tongyaxi\mvc\config\SpringConfig.class
+com\tongyaxi\mvc\interceptor\TestInterceptor.class
+com\tongyaxi\mvc\config\WebInit.class
